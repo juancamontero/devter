@@ -34,7 +34,7 @@ export default function PostCard ({
                     {content}
                 </p>
                 <span className="pt-2">
-                    #FrontendWithZoey
+                    #What do i do here?
                     <span className="py-2" aria-label="computer" role="img">
                         💻
                     </span>
