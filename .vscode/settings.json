@@ -1,0 +1,8 @@
+{
+    "eslint.format.enable": true,
+    "eslint.codeActionsOnSave.rules": null,
+    "eslint.codeActionsOnSave.mode": "all",
+    "cSpell.words": [
+        "supabase"
+    ]
+}

@@ -11,21 +11,67 @@ yarn dev
 # or
 pnpm dev
 ```
+## ESLint
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+npx eslint --init
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+✔ How would you like to use ESLint? · style
+✔ What type of modules does your project use? · esm
+✔ Which framework does your project use? · react
+✔ Does your project use TypeScript? · No / Yes
+✔ Where does your code run? · browser, node
+✔ How would you like to define a style for your project? · guide
+✔ Which style guide do you want to follow? · standard-with-typescript
+✔ What format do you want your config file to be in? · JSON
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+in .eslintrc.json:
 
-## Learn More
+ ADD
+ "parserOptions": {
+    ...
+    "project": "./tsconfig.json"
+  },
+  ...
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-misused-promises": "off"
+  }
 
-To learn more about Next.js, take a look at the following resources:
+## Supabase
+npm install @supabase/auth-helpers-nextjs @supabase/supabase-js -E
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+crear tabla pública **posts** con campos: **id** (llave), **content** y **user_uid** con llave foránea a **auth/users/id**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Crear tabla pública **users** con campos: **id**, **user_name** y **avatar_url**
+
+Crear función tipo trigger **insert_user_in_public_table_for_new_user**
+
+con esta definición 
+```sql
+begin
+  insert into public.users (id, name, user_name, avatar_url)
+  values (
+    new.id,
+    new.raw_user_meta_data->>'name',
+    new.raw_user_meta_data->>'user_name',
+    new.raw_user_meta_data->>'avatar_url'
+  );
+  return new;
+end
+```
+y en **ADVANCED SETTING**, usar **Type of security** en **SECURITY DEFINER**
+
+Crear trigger que se dispara después que a **auth/user** se le inserta una FILA  y usa la funcion creada **insert_user_in_public_table_for_new_user**
+
+## NextUi
+
+```bash
+pnpm add @nextui-org/react framer-motion
+```
+
 
 ## Deploy on Vercel
 
