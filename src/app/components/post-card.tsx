@@ -1,6 +1,6 @@
 'use client'
 import { Card, CardHeader, CardBody, CardFooter, Avatar } from '@nextui-org/react'
-import { IconMessageCircle } from '@tabler/icons-react'
+import { IconHeart, IconMessageCircle, IconRepeat } from '@tabler/icons-react'
 import Link from 'next/link'
 // import { useState } from 'react'
 
@@ -17,7 +17,7 @@ export default function PostCard ({
 }) {
   //   const [isFollowed, setIsFollowed] = useState(false)
   return (
-        <Card className="max-w-[340px]">
+        <Card className="shadow-none bg-transparent hover:bg-slate-800 transition border-b rounded-none border-white/20 cursor-pointer">
             <CardHeader className="justify-between">
                 <div className="flex gap-x-2">
                     <Link href={`/${userName}`}>
@@ -33,15 +33,17 @@ export default function PostCard ({
                 <p>
                     {content}
                 </p>
-                <span className="pt-2">
-                    #What do i do here?
-                    <span className="py-2" aria-label="computer" role="img">
-                        💻
-                    </span>
-                </span>
             </CardBody>
             <CardFooter className="gap-3">
-                <IconMessageCircle />
+                <button>
+                    <IconMessageCircle className='w-4 h-4' />
+                </button>
+                <button>
+                    <IconHeart className='w-4 h-4' />
+                </button>
+                <button>
+                    <IconRepeat className='w-4 h-4' />
+                </button>
             </CardFooter>
         </Card>
   )

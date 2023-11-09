@@ -41,6 +41,9 @@ in .eslintrc.json:
   }
 
 ## Supabase
+
+Check [NextJs Supabase Guide](https://supabase.com/docs/guides/auth/auth-helpers/nextjs)
+
 npm install @supabase/auth-helpers-nextjs @supabase/supabase-js -E
 
 crear tabla pública **posts** con campos: **id** (llave), **content** y **user_uid** con llave foránea a **auth/users/id**
@@ -66,10 +69,22 @@ y en **ADVANCED SETTING**, usar **Type of security** en **SECURITY DEFINER**
 
 Crear trigger que se dispara después que a **auth/user** se le inserta una FILA  y usa la funcion creada **insert_user_in_public_table_for_new_user**
 
+### Supabase types
+
+```bash
+echo "MY_TOKEN" | npx supabase login
+npx supabase gen types typescript --project-id PROJECT-ID
+npx supabase gen types typescript --project-id PROJECT-ID > ./src/app/types/database.ts
+```
+
 ## NextUi
 
 ```bash
 pnpm add @nextui-org/react framer-motion
+```
+## Icons
+```bash
+pnpm install @tabler/icons-react
 ```
 
 
